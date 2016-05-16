@@ -1,5 +1,5 @@
 # Product Selection
-Nodejs v0.12.9 is required to run this application
+Nodejs 4.0.0 is required to run this application
 
 ## Cloning the repo and installing dependencies
 ``` git clone https://github.com/lucasghizoni/productselection.git```
