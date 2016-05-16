@@ -1,14 +1,14 @@
-var SkyChallenge = SkyChallenge || {};
-SkyChallenge.costumerIDCookie = 12332;
+var ProductSelection = ProductSelection || {};
+ProductSelection.costumerIDCookie = 12332;
 
-SkyChallenge.init = function() {
-    SkyChallenge.getCostumerLocation(SkyChallenge.costumerIDCookie)
+ProductSelection.init = function() {
+    ProductSelection.getCostumerLocation(ProductSelection.costumerIDCookie)
         .then(function(response){
             
-            SkyChallenge.getCatalogue(response).then(function(response){
+            ProductSelection.getCatalogue(response).then(function(response){
                 var jsonResponse = JSON.parse(response);
                 
-                SkyChallenge.drawHtml(jsonResponse);
+                ProductSelection.drawHtml(jsonResponse);
             });
         })
         .catch(function(errStatus){
@@ -17,16 +17,16 @@ SkyChallenge.init = function() {
         });
 };
 
-SkyChallenge.drawHtml = function(jsonResponse){
-      SkyChallenge.drawCards(jsonResponse);
+ProductSelection.drawHtml = function(jsonResponse){
+      ProductSelection.drawCards(jsonResponse);
       
       jsonResponse.filter(function(product){
-             SkyChallenge.addProductOnCard(product);
+             ProductSelection.addProductOnCard(product);
       });
-      SkyChallenge.addCheckoutListener();
+      ProductSelection.addCheckoutListener();
 };
 
-SkyChallenge.drawCards = function(products){
+ProductSelection.drawCards = function(products){
     var cards = [];
     
     products.filter(function(product){
@@ -53,13 +53,13 @@ SkyChallenge.drawCards = function(products){
     
 }
 
-SkyChallenge.addProductOnCard = function(obj){
+ProductSelection.addProductOnCard = function(obj){
     var label = document.createElement('label');
     
     var checkbox = document.createElement('INPUT');
     checkbox.setAttribute("type", "checkbox");
     checkbox.onchange = function(result){
-        SkyChallenge.updateBasket(result.srcElement);
+        ProductSelection.updateBasket(result.srcElement);
     };
     
     label.appendChild(checkbox); 
@@ -73,7 +73,7 @@ SkyChallenge.addProductOnCard = function(obj){
     document.getElementById(obj.category.toLowerCase().trim()).appendChild(brElement);    
 };
 
-SkyChallenge.updateBasket = function(element){
+ProductSelection.updateBasket = function(element){
     var basketCard = document.getElementById('basket');
     var checkboxContent = element.parentNode.innerText;
     
@@ -91,10 +91,10 @@ SkyChallenge.updateBasket = function(element){
             }
         }
     }
-    SkyChallenge.updateBasketBtnCheckout(basketProducts.length);
+    ProductSelection.updateBasketBtnCheckout(basketProducts.length);
 };
 
-SkyChallenge.updateBasketBtnCheckout = function(basketProductsLength){
+ProductSelection.updateBasketBtnCheckout = function(basketProductsLength){
     var checkoutButton = document.getElementById('checkout');
     
     if(basketProductsLength > 0){
@@ -105,15 +105,15 @@ SkyChallenge.updateBasketBtnCheckout = function(basketProductsLength){
 };
 
 
-SkyChallenge.getCostumerLocation = function(id){
-      return SkyChallenge.xmlHttpGet('costumerlocation/' + id);
+ProductSelection.getCostumerLocation = function(id){
+      return ProductSelection.xmlHttpGet('costumerlocation/' + id);
 };
 
-SkyChallenge.getCatalogue = function(city){
-      return SkyChallenge.xmlHttpGet('catalogue/' + city);
+ProductSelection.getCatalogue = function(city){
+      return ProductSelection.xmlHttpGet('catalogue/' + city);
 };
 
-SkyChallenge.xmlHttpGet = function(path){
+ProductSelection.xmlHttpGet = function(path){
     return new Promise(function(resolve, reject){
        var xhr = new XMLHttpRequest();
         xhr.open('GET', encodeURI(path));
@@ -129,7 +129,7 @@ SkyChallenge.xmlHttpGet = function(path){
     });
 };
 
-SkyChallenge.onCheckout = function(){
+ProductSelection.onCheckout = function(){
     var checkoutCard = document.getElementById('basket');
     var products = checkoutCard.getElementsByClassName('product-basket');
     var productsResponse = [];
@@ -138,12 +138,12 @@ SkyChallenge.onCheckout = function(){
         productsResponse.push(products[i].innerText);
     }
     
-    window.location = 'confirmationpage/' + SkyChallenge.costumerIDCookie + 
+    window.location = 'confirmationpage/' + ProductSelection.costumerIDCookie + 
                         "/" + productsResponse.toString();
 };
 
-SkyChallenge.addCheckoutListener = function(){
-    document.getElementById('checkout').addEventListener('click', SkyChallenge.onCheckout);
+ProductSelection.addCheckoutListener = function(){
+    document.getElementById('checkout').addEventListener('click', ProductSelection.onCheckout);
 };
 
-document.addEventListener("DOMContentLoaded", SkyChallenge.init() );
+document.addEventListener("DOMContentLoaded", ProductSelection.init() );

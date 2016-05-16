@@ -1,10 +1,10 @@
-# Products Selection
-You need nodejs properly installed on your machine
+# Product Selection
+Nodejs v0.12.9 is required to run this application
 
 ## Cloning the repo and installing dependencies
-``` git clone```
+``` git clone https://github.com/lucasghizoni/productselection.git```
 
-``` cd skychallenge ```
+``` cd productselection ```
 
 ``` npm install ```
 
