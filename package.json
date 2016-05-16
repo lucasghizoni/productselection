@@ -1,8 +1,8 @@
 {
-  "name": "skychallenge",
+  "name": "productselection",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "mocha test/unit/* test/api/*"
   },
