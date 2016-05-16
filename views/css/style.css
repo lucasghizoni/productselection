@@ -1,0 +1,38 @@
+body {
+	display: flex;
+	justify-content: center;
+}
+
+#container {
+	display: flex;
+	height: 100px;
+	width: 60%;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.card {
+	background:#CCC;
+	margin:10px;
+	-webkit-flex:1 1 auto;
+	flex:1 1 auto;
+	min-height: 150px;
+	width: 150px;
+	display:block;
+	position: relative;
+}
+
+.card-title{
+	margin: 4 0 10 4;
+}
+
+#checkout {
+	position: absolute;
+    bottom: 5%;
+    right:40%;
+}
+
+.product-basket{
+	display:block;
+	margin: 0 0 0 4;
+}
