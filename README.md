@@ -1,4 +1,4 @@
-# Sky Challenge
+# Products Selection
 You need nodejs properly installed on your machine
 
 ## Cloning the repo and installing dependencies
